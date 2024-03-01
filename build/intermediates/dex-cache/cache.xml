@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\Dimitri\Development\AndroidstudioProjects\Appel\app\libs\GoogleAdMobAdsSdk-6.2.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="40ffb9188343d72dc46d596836a8dd8d464b41a3">
+        <dex dex="C:\Users\Dimitri\Development\AndroidstudioProjects\Appel\app\build\intermediates\pre-dexed\debug\GoogleAdMobAdsSdk-6.2.1-cdb749676ca4bcea931171c0dd03024bd1f9ce8d.jar" />
+    </item>
+    <item
+        jar="C:\Users\Dimitri\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
+        <dex dex="C:\Users\Dimitri\Development\AndroidstudioProjects\Appel\app\build\intermediates\pre-dexed\debug\support-v4-19.1.0-d13a79e9827bd8d86ba68bd8253278d238ccd507.jar" />
+    </item>
+
+</items>

@@ -1,0 +1,32 @@
+name: Go to production
+
+on:
+  workflow_dispatch:
+
+jobs:
+  prerelease:
+    uses: ./.github/workflows/prerelease.yaml
+    secrets: inherit
+
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    needs: prerelease
+    steps:
+      - name: Download apk previously build
+        uses: actions/download-artifact@v4
+        with:
+          name: apk
+      - name: Release in GitHub
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            *.apk
+      - name: Start production in Play Store
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
+          packageName: com.a2a.appel
+          releaseFiles: "*.apk"
+          track: production
+          status: draft

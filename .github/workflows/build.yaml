@@ -1,11 +1,9 @@
 name: Build
 
 on:
-  workflow_dispatch:
   workflow_call:
   pull_request:
   push:
-    branches: "**"
     branches-ignore: "main"
 
 concurrency:

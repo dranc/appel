@@ -3,8 +3,8 @@ name: Pre release
 on:
   workflow_call:
   push:
-    # tags:
-    #   - "v*"
+    tags:
+      - "v*"
 
 jobs:
   build:
@@ -29,4 +29,4 @@ jobs:
           serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
           packageName: com.a2a.appel
           releaseFiles: "*.apk"
-          track: internal
+          status: draft

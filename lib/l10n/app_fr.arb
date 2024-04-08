@@ -1,0 +1,30 @@
+{
+  "@@locale": "fr",
+  "mon_amour": "Mon Amour",
+  "next": "Suivant",
+  "previous": "Précédent",
+  "over": "Quitter",
+  "appel_vdapps": "VDapps.com",
+  "appel_settings": "Paramètres",
+  "welcome_content": "Prenez quelques instants pour paramétrer l'application.",
+  "number_title": "Numéro de Mon Amour",
+  "number_choose": "Choisissez un numéro",
+  "number_choose_first": "Merci de sélectionner d'abord un numéro.",
+  "waiting_time_title": "Temps d'attente",
+  "waiting_time": "L'appel se lancera après {count, plural, =1{1 seconde} other{{count} secondes}}.",
+  "@waiting_time": {
+    "placeholders": {
+      "count": {
+        "type": "num",
+        "format": "compact"
+      }
+    }
+  },
+  "support_title": "On a besoin de vous !",
+  "support_content": "Aidez l'application à grandir et à s'améliorer.",
+  "support_rate": "Noter Mon Amour",
+  "see_code": "Accéder au code sur GitHub",
+  "touch_to_pause": "Toucher pour mettre en pause",
+  "clear_selection": "Effacer la sélection",
+  "ok": "OK"
+}

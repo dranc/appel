@@ -1,4 +1,4 @@
-name: Go to production
+name: Go to prod
 
 on:
   workflow_dispatch:

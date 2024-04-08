@@ -2,6 +2,10 @@ name: Go to production
 
 on:
   workflow_dispatch:
+    inputs:
+      existing_edit_id:
+        description: "Please provide the existingEditId of the Play Store release"
+        required: true
 
 jobs:
   prerelease:
@@ -29,4 +33,5 @@ jobs:
           packageName: com.a2a.appel
           releaseFiles: "*.apk"
           track: production
+          existingEditId: "${{ inputs.existing_edit_id }}"
           status: draft

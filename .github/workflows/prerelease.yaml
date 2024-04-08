@@ -3,7 +3,7 @@ name: Pre release
 on:
   workflow_dispatch:
   push:
-    tags: "**"
+    tags: "v*"
 
 jobs:
   build:

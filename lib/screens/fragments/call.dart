@@ -19,7 +19,10 @@ class _CallState extends State<Call> with SingleTickerProviderStateMixin {
   late AnimationController controller;
   late final AppLifecycleListener _listener;
 
+  bool callStarted = false;
+
   void startCountdown() {
+    callStarted = false;
     controller.reset();
     controller.duration = Duration(seconds: widget.config.waitingTime);
     controller.forward();
@@ -39,11 +42,12 @@ class _CallState extends State<Call> with SingleTickerProviderStateMixin {
         controller.stop();
         await FlutterPhoneDirectCaller.callNumber(
             widget.config.numberOfMonAmour);
+        callStarted = true;
       }
     });
 
     _listener = AppLifecycleListener(onStateChange: (state) {
-      if (state == AppLifecycleState.resumed) {
+      if (!callStarted && state == AppLifecycleState.resumed) {
         startCountdown();
       }
     });
@@ -62,8 +66,18 @@ class _CallState extends State<Call> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return InkWell(
       onTapDown: (_) => controller.stop(),
-      onTapCancel: () => controller.forward(),
-      onTapUp: (_) => controller.forward(),
+      onTapCancel: () {
+        if (callStarted) {
+          startCountdown();
+        }
+        controller.forward();
+      },
+      onTapUp: (_) {
+        if (callStarted) {
+          startCountdown();
+        }
+        controller.forward();
+      },
       splashFactory: NoSplash.splashFactory,
       splashColor: Colors.transparent,
       child: Center(

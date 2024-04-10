@@ -1,5 +1,6 @@
 import 'package:appel/services/configure_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -36,6 +37,8 @@ class _CallState extends State<Call> with SingleTickerProviderStateMixin {
     controller.addListener(() async {
       setState(() {});
       if (controller.value == 1) {
+        await SystemChannels.platform
+            .invokeMethod<void>('SystemNavigator.pop', true);
         await FlutterPhoneDirectCaller.callNumber(
             widget.config.numberOfMonAmour);
       }

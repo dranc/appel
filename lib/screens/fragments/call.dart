@@ -36,6 +36,7 @@ class _CallState extends State<Call> with SingleTickerProviderStateMixin {
     controller.addListener(() async {
       setState(() {});
       if (controller.value == 1) {
+        controller.stop();
         await FlutterPhoneDirectCaller.callNumber(
             widget.config.numberOfMonAmour);
       }

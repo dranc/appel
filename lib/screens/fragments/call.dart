@@ -1,5 +1,6 @@
 import 'package:appel/services/configure_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -19,10 +20,7 @@ class _CallState extends State<Call> with SingleTickerProviderStateMixin {
   late AnimationController controller;
   late final AppLifecycleListener _listener;
 
-  bool callStarted = false;
-
   void startCountdown() {
-    callStarted = false;
     controller.reset();
     controller.duration = Duration(seconds: widget.config.waitingTime);
     controller.forward();
@@ -39,15 +37,15 @@ class _CallState extends State<Call> with SingleTickerProviderStateMixin {
     controller.addListener(() async {
       setState(() {});
       if (controller.value == 1) {
-        controller.stop();
+        await SystemChannels.platform
+            .invokeMethod<void>('SystemNavigator.pop', true);
         await FlutterPhoneDirectCaller.callNumber(
             widget.config.numberOfMonAmour);
-        callStarted = true;
       }
     });
 
     _listener = AppLifecycleListener(onStateChange: (state) {
-      if (!callStarted && state == AppLifecycleState.resumed) {
+      if (state == AppLifecycleState.resumed) {
         startCountdown();
       }
     });
@@ -66,18 +64,8 @@ class _CallState extends State<Call> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return InkWell(
       onTapDown: (_) => controller.stop(),
-      onTapCancel: () {
-        if (callStarted) {
-          startCountdown();
-        }
-        controller.forward();
-      },
-      onTapUp: (_) {
-        if (callStarted) {
-          startCountdown();
-        }
-        controller.forward();
-      },
+      onTapCancel: () => controller.forward(),
+      onTapUp: (_) => controller.forward(),
       splashFactory: NoSplash.splashFactory,
       splashColor: Colors.transparent,
       child: Center(

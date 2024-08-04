@@ -22,12 +22,9 @@ class SupportStep extends MyStep {
                 child: Column(
                   children: [
                     ElevatedButton.icon(
-                      onPressed: () {
-                        const array = [];
-                        array[10] = 0;
-                        array[-1] = 0;
-                        throw Exception("Added by me to test Sentry");
-                      },
+                      onPressed: () => launchUrl(
+                        Uri.parse('market://details?id=com.a2a.appel'),
+                      ),
                       icon: const Icon(Icons.favorite),
                       label: Expanded(
                         child: Text(AppLocalizations.of(context)!.support_rate),

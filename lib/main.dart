@@ -2,9 +2,18 @@ import 'package:appel/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  await SentryFlutter.init(
+    (options) {
+      options.dsn =
+          'https://bfad4ce0116cca066f8730f6a9fcbf3a@o4507715408691200.ingest.de.sentry.io/4507715413016656';
+      options.tracesSampleRate = 0.5;
+      options.profilesSampleRate = 0.5;
+    },
+    appRunner: () => runApp(const MyApp()),
+  );
 }
 
 class MyApp extends StatelessWidget {

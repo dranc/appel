@@ -22,9 +22,15 @@ class SupportStep extends MyStep {
                 child: Column(
                   children: [
                     ElevatedButton.icon(
-                      onPressed: () => launchUrl(
-                        Uri.parse('market://details?id=com.a2a.appel'),
-                      ),
+                      onPressed: () async {
+                        var uri =
+                            Uri.parse('market://details?id=com.a2a.appel');
+                        if (!await canLaunchUrl(uri)) {
+                          uri = Uri.parse(
+                              'https://play.google.com/store/apps/details?id=com.a2a.appel');
+                        }
+                        await launchUrl(uri);
+                      },
                       icon: const Icon(Icons.favorite),
                       label: Expanded(
                         child: Text(AppLocalizations.of(context)!.support_rate),
